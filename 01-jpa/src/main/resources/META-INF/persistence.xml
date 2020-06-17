@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+             version="2.0">
+
+    <!--持久化单元-->
+    <persistence-unit name="jpa01-mysql" transaction-type="RESOURCE_LOCAL">
+
+
+        <!-- 配置ORM映射产品来实现JPA映射 
+			 实际上是 javax.persistence.spi.PersistenceProvider的实现类
+			 如果项目中只有一个JPA实现产品，则不需要配置该节点 -->
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+        <!--具体的实体类，此选项可省略-->
+        <class>com.suchaos.domain.Article</class>
+
+        <properties>
+            <!-- 连接数据库的基本信息 -->
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+            <property name="javax.persistence.jdbc.url"
+                      value="jdbc:mysql://localhost:3306/learn_spring_data?useUnicode=true&amp;haracterEncoding=utf-8&amp;useSSL=false&amp;serverTimezone=Asia/Shanghai"/>
+            <property name="javax.persistence.jdbc.user" value="root"/>
+            <property name="javax.persistence.jdbc.password" value="password"/>
+            <!-- ORM 框架的基本信息 -->
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+        </properties>
+    </persistence-unit>
+</persistence>
